@@ -13,8 +13,9 @@ import os
 from threading import Thread
 import threading
 import shlex
-from sense_hat import SenseHat
+from sense_emu import SenseHat
 from c8yMQTT import C8yMQTT
+import datetime
 import time
 import io
 
@@ -36,7 +37,7 @@ c8y = C8yMQTT(config.get('device','host'),
 
 def sendTemperature():
     tempString = "211," + str(sense.get_temperature())
-    c8y.logger.debug("Sending Temperature  measurement: " + tempString)
+    c8y.logger.debug("=========="+datetime.datetime.now().strftime('%m-%d %H:%M:%S')+" ======= Sending Temperature  measurement: " + tempString)
     c8y.publish("s/us", tempString)
 
 
